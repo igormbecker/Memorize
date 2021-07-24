@@ -1,2 +1,2 @@
 # Swift-Memorize-App
-CS193p Course of Swift Development Applications - Stanford University
+CS193p Course of Swift Development Applications - Stanford University 2021
