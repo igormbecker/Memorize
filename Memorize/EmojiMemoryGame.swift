@@ -3,7 +3,7 @@
 //  Memorize
 //
 //  Created by Igor Becker on 25/07/21.
-//
+//  ViewModel
 
 import SwiftUI
 
@@ -11,6 +11,7 @@ class EmojiMemoryGame: ObservableObject {
     
     static let emojis = ["👻", "💀", "🎃", "😱", "😨", "😰", "😥", "😈", "🤡",
     "😵‍💫", "😶‍🌫️", "👿", "👺", "😵", "🥴", "👽", "👹", "🤖"] //18 emojis
+    
     
     static func createMemoryGame() -> MemoryGame<String> {
         MemoryGame<String>(numberOfPairsOfCards: 10) { pairIndex in
@@ -24,10 +25,9 @@ class EmojiMemoryGame: ObservableObject {
         model.cards
     }
     
-    
     // MARK:  - Intent(s)
     
-    func choose(_ card: MemoryGame<String>.Card) {
-        model.choose(card)
+    func choose(_ card: MemoryGame<String>.Card, totalScore: inout Int) {
+        model.choose(card, totalScore: &totalScore)
     }
 }

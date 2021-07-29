@@ -3,29 +3,36 @@
 //  Memorize
 //
 //  Created by Igor Becker on 20/07/21.
-//
+//  View
 
 import SwiftUI
 
 struct ContentView: View {
     @ObservedObject var viewModel: EmojiMemoryGame
-    
+    @State var totalScore: Int = 0
     
     var body: some View {
         VStack {
+            
+            HStack {
+                Text("Score: \(totalScore)")
+                    .padding()
+            }
+            .padding(.horizontal)
+            
             ScrollView {
                 LazyVGrid(columns: [GridItem(.adaptive(minimum: 65))]) {
                     ForEach(viewModel.cards) { card in
                         CardView(card: card)
                             .aspectRatio(2/3, contentMode: .fit)
                             .onTapGesture {
-                                viewModel.choose(card)
+                                viewModel.choose(card, totalScore: &totalScore)
                             }
                     }
                 }
             }
         }
-        .foregroundColor(Color.red)
+        .foregroundColor(Color.orange)
         .padding(.horizontal)
     }
     
@@ -52,6 +59,9 @@ struct CardView: View {
 //        }
     }
 }
+
+
+
 
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
